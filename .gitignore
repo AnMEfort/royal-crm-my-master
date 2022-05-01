@@ -1,0 +1,7 @@
+# IDE files
+.vscode
+.idea
+
+# project
+/node_modules/
+/config/
