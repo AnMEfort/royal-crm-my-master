@@ -11,19 +11,19 @@ router.get("/", function (req, res, next) {
 });
 
 /* customers */
-router.get("/customers-file", function (req, res, next) {
+router.get("/cusomters-home", function (req, res, next) {
   const filePath = path.join(__dirname, "../client", "customers-home.html");
   res.sendFile(filePath);
 });
 
 router.get("/customers", cm.customersList);
-router.get("/customers-add", cm.addCustomer);
+router.post("/customers", cm.addCustomer);
 
 // todo: delete customer
 router.delete("/customers", cm.deleteCustomer);
 
 // todo: export all customers to file
-router.get("/customers-export", cm.exportCustomers);
+router.get("/customers/export", cm.exportCustomers);
 
 // todo: edit/update customer
 router.patch("/customers", cm.updateCustomer);
