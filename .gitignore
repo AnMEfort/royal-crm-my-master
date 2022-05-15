@@ -1,6 +1,7 @@
 # IDE files
 .vscode
 .idea
+.docs
 
 # project
 /node_modules/
