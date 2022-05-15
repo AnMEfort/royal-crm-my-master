@@ -3,11 +3,14 @@
 Mini CRM project aimed at managing customers, products and orders.
 
 ### Tech Stack
-* Node.js
-* Express.js
+
+- Node.js
+- Express.js
 
 ### install dependencies
+
 `$ npm install`
 
-### run the app  
-`$ DEBUG=royal-crm:* npm start`
+### run the app
+
+`set DEBUG=royal-crm:\*; & npm start`
