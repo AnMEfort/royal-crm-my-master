@@ -6,6 +6,7 @@ Mini CRM project aimed at managing customers, products and orders.
 
 - Node.js
 - Express.js
+- MySQL
 
 ### install dependencies
 
@@ -13,17 +14,7 @@ Mini CRM project aimed at managing customers, products and orders.
 
 ### run the app
 
-`set DEBUG=royal-crm:\*; & npm start`
-
-# royal-crm
-
-Mini CRM project aimed at managing customers, products and orders.
-
-### Tech Stack
-
-- Node.js
-- Express.js
-- MySQL
+`set DEBUG=royal-crm:*; & npm start`
 
 ## Prepare The Environment
 
