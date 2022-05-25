@@ -36,3 +36,7 @@ Mini CRM project aimed at managing customers, products and orders.
 <!-- github-Shay Lev -->
 
 'https://github.com/levworkshop'
+
+<!-- my github -->
+
+'https://github.com/AnMEfort/royal-crm'
