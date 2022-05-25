@@ -10,11 +10,11 @@ Mini CRM project aimed at managing customers, products and orders.
 
 ### install dependencies
 
-`$ npm install`
+` npm install`
 
 ### run the app
 
-`set DEBUG=royal-crm:*; & npm start`
+`set DEBUG=royal-crm:\*; & npm start`
 
 ## Prepare The Environment
 
@@ -27,3 +27,8 @@ Mini CRM project aimed at managing customers, products and orders.
 6. Run the app:
    - Windows: `set DEBUG=royal-crm:*; & npm start`
    - MacOS/Linux: `$ DEBUG=royal-crm:* npm start`
+
+## how to kill port
+
+`netstat -ano | findstr :<PORT>`
+`taskkill /PID <PID> /F`

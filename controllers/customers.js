@@ -1,7 +1,7 @@
-const database = require("./database");
 const joi = require("joi");
 const fs = require("fs");
 const path = require("path");
+const database = require("./database");
 
 module.exports = {
   addCustomer: async function (req, res, next) {
@@ -25,7 +25,7 @@ module.exports = {
     }
 
     const sql =
-      "INSERT INTO customers(name, phone, email, country_id)" +
+      "INSERT INTO customers(name, phone, email, country_code)" +
       " VALUES(?,?,?,?);";
 
     try {
@@ -46,28 +46,25 @@ module.exports = {
   customersList: async function (req, res, next) {
     const sql =
       "SELECT cust.id, cust.name, cust.phone, cust.email, " +
-      "cntr.id AS country_id, cntr.name AS country_name, cntr.country_code FROM customers cust " +
-      "LEFT JOIN countries cntr ON cust.country_id = cntr.id ORDER BY cust.name ASC;";
+      "cntr.id AS country_code, cntr.name AS country_name, cntr.country_code FROM customers cust " +
+      "LEFT JOIN countries cntr ON cust.country_code = cntr.id ORDER BY cust.name ASC;";
 
     try {
-      // const connection = await database.getConnection();
-      const result = await database.query(sql); // [rows, fields]
+      const result = await database.query(sql);
       res.send(result[0]);
     } catch (err) {
       console.log(err);
     }
   },
 
-  // todo: export all customers to file
-  // sql: SELECT
   exportCustomers: async function (req, res, next) {
     const sql =
       "SELECT cust.name, cust.phone, cust.email, " +
       "cntr.name AS country_name FROM customers cust " +
-      "LEFT JOIN countries cntr ON cust.country_id = cntr.id ORDER BY cust.name ASC;";
+      "LEFT JOIN countries cntr ON cust.country_code = cntr.id ORDER BY cust.name ASC;";
 
     try {
-      const result = await database.query(sql); // [{rows}, {fields}]
+      const result = await database.query(sql);
 
       const now = new Date().getTime(); // moment.js
       const filePath = path.join(__dirname, "../files", `customers-${now}.txt`);
@@ -85,10 +82,6 @@ module.exports = {
       throw err;
     }
   },
-
-  // todo: delete customer
-  // sql: DROP
-  deleteCustomer: async function (req, res, next) {},
 
   // todo: sort customers by column
   // sql: SORT BY ASC/DESC
