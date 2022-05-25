@@ -32,3 +32,7 @@ Mini CRM project aimed at managing customers, products and orders.
 
 `netstat -ano | findstr :<PORT>`
 `taskkill /PID <PID> /F`
+
+<!-- github-Shay Lev -->
+
+'https://github.com/levworkshop'
