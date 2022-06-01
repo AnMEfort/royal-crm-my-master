@@ -40,3 +40,11 @@ Mini CRM project aimed at managing customers, products and orders.
 <!-- my github -->
 
 'https://github.com/AnMEfort/royal-crm'
+
+//הצפנת ססמא 12345//
+
+נכנסים ל node  
+equire('bcrypt').hash('123456', 10, function(e,h){console.log(h)})
+ואז יוצאת ססמא מוצפנת
+
+'$2b$10$KpwjkKBGa8fN9VZu42KNn.Hsis3QsDI9SVMv61WNp0se0sQkagYJi'
