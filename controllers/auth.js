@@ -8,12 +8,12 @@ module.exports = {
   login: async function (req, res, next) {
     const reqBody = req.body;
 
-    const sechema = joi.object({
+    const schema = joi.object({
       email: joi.string().required().min(6).max(255).email(),
       password: joi.string().required().min(6),
     });
 
-    const { error, value } = sechema.validate(reqBody);
+    const { error, value } = schema.validate(reqBody);
 
     if (error) {
       console.log(error.details[0].message);
@@ -26,28 +26,30 @@ module.exports = {
     try {
       const result = await database.query(sql, [reqBody.email]);
       const rows = result[0];
-      // $2b$10$KpwjkKBGa8fN9VZu42KNn.Hsis3QsDI9SVMv61WNp0se0sQkagYJi
-      // 12345
       const validPassword = await bcrypt.compare(
         reqBody.password,
         rows[0].password_hash
       );
       if (!validPassword) throw "Invalid password";
+
+      const param = { email: reqBody.email };
+      const token = jwt.sign(param, config.JWT_SECRET, { expiresIn: "72800s" });
+
+      // todo: use authorization header
+      // res
+      //     .cookie('access_token', token, {
+      //         httpOnly: true,
+      //         secure: true,
+      //     })
+      //     .send('Welcome, you are now logged in.');
+
+      res.json({
+        token: token,
+      });
     } catch (err) {
       console.log(`Error: ${err}`);
       res.status(401).send("Unauthorized");
       return;
     }
-
-    const param = { email: reqBody.email };
-    const token = jwt.sign(param, config.JWT_SECRET, { expiresIn: "72800s" });
-
-    // todo: use authorization header
-    res
-      .cookie("access_token", token, {
-        httpOnly: true,
-        secure: true,
-      })
-      .send("Welcome, you are now logged in.");
   },
 };
